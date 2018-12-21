@@ -1,12 +1,12 @@
 from PIL import Image
 import os
-src = "./resizedData"
+src = "./data"
 dst = "./resized_black/"
 
 for each in os.listdir(src):
     png = Image.open(os.path.join(src,each))
     # print each
-    if png.mode == 'RGBA':
+    if png.mode != 'RGB':
         png.load() # required for png.split()
         background = Image.new("RGB", png.size, (0,0,0))
         background.paste(png, mask=png.split()[3]) # 3 is the alpha channel
